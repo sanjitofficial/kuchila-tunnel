@@ -31,7 +31,7 @@ chmod +x tunnel.sh install_tools.sh
 ```sh
 ./tunnel.sh
 ```
-This command will run the tool. It also checks required tools if they are installed or not, if not then asks you for installation.
+It also checks required tools automatically if they are installed or not, if not then asks you for installation.
 
 ---
 
