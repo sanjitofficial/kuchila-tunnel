@@ -38,7 +38,7 @@ This script automatically installs curl, unzip, ngrok, cloudflared, nodejs, npm,
 
 Note: WSL users follow the same steps — you’re inside Linux already.
 
-#### 📱 Termux (Android)
+## 📱 Termux (Android)
 The installer may not work on Termux. Use manual installation instead:
 ```sh
 - pkg update && pkg upgrade
@@ -46,12 +46,12 @@ The installer may not work on Termux. Use manual installation instead:
 - npm install -g localtunnel
 ```
 Then install ARM-compatible binaries for ngrok and cloudflared:
-# ngrok
+#### ngrok
 ```sh
 - curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
 - unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
 ```
-# cloudflared
+#### cloudflared
 ```sh
 - curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
 - mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
