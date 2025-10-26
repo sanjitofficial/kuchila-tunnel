@@ -91,7 +91,9 @@ Stop the tunnel anytime with Ctrl + C.
 ## 🔑 Optional Configuration
 
 ### ngrok Authtoken
+```sh
 ngrok config add-authtoken <your_token_here>
+```
 Get your free token from https://dashboard.ngrok.com/get-started/your-authtoken
 
 ### Cloudflare Named Tunnels
