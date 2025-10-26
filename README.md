@@ -64,6 +64,22 @@ Then install ARM-compatible binaries for ngrok and cloudflared:
 - curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
 - mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
 ```
+###Clone Repository
+```sh
+git clone https://github.com/sanjitofficial/kuchila-tunnel.git
+```
+```sh
+cd kuchila-tunnel
+```
+### Make scripts executable
+```sh
+chmod +x tunnel.sh install_tools.sh
+```
+### Run tunnel:
+```sh
+- ./tunnel.sh
+```
+This will install whole tool.
 ---
 
 ## 🚀 Usage
@@ -71,7 +87,7 @@ Start any local server (for example):
 ```sh
 - python -m http.server 8000
 ```
-Then run the tunnel:
+####Then run the tunnel:
 ```sh
 - ./tunnel.sh
 ```
