@@ -20,7 +20,7 @@ KUCHILA TUNNEL is a lightweight bash utility that helps you instantly share your
 git clone https://github.com/sanjitofficial/kuchila-tunnel.git
 ```
 ```sh
-- cd kuchila-tunnel
+cd kuchila-tunnel
 ```
 ### 2️⃣ Make scripts executable
 ```sh
@@ -48,22 +48,25 @@ The installer may not work on Termux. Use manual installation instead:
 Then install ARM-compatible binaries for ngrok and cloudflared:
 # ngrok
 ```sh
-curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
-unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
+- curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
+- unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
 ```
 # cloudflared
 ```sh
-curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
-mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
+- curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
+- mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
 ```
 ---
 
 ## 🚀 Usage
 Start any local server (for example):
+```sh
 - python -m http.server 8000
-
+```
 Then run the tunnel:
+```sh
 - ./tunnel.sh
+```
 
 Follow the prompts:
 1. Choose a tunneling service  
