@@ -64,7 +64,7 @@ Then install ARM-compatible binaries for ngrok and cloudflared:
 - curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
 - mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
 ```
-###Clone Repository
+### Clone Repository
 ```sh
 git clone https://github.com/sanjitofficial/kuchila-tunnel.git
 ```
