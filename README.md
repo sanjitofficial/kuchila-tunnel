@@ -16,46 +16,54 @@ KUCHILA TUNNEL is a lightweight bash utility that helps you instantly share your
 ## ⚙️ Installation
 
 ### 1️⃣ Clone the repository
---> git clone https://github.com/sanjitofficial/kuchila-tunnel.git
-
---> cd kuchila-tunnel
-
+```sh
+git clone https://github.com/sanjitofficial/kuchila-tunnel.git
+```
+```sh
+- cd kuchila-tunnel
+```
 ### 2️⃣ Make scripts executable
---> chmod +x tunnel.sh install_tools.sh
+```sh
+chmod +x tunnel.sh install_tools.sh
+```
 
 ### 3️⃣ Install dependencies
 
 #### 🐧 Linux or WSL (Windows Subsystem for Linux)
 Just run the installer:
---> ./install_tools.sh
-
+```sh
+./install_tools.sh
+```
 This script automatically installs curl, unzip, ngrok, cloudflared, nodejs, npm, ssh, etc.
 
 Note: WSL users follow the same steps — you’re inside Linux already.
 
 #### 📱 Termux (Android)
 The installer may not work on Termux. Use manual installation instead:
---> pkg update && pkg upgrade
---> pkg install nodejs openssh curl unzip
---> npm install -g localtunnel
-
+```sh
+- pkg update && pkg upgrade
+- pkg install nodejs openssh curl unzip
+- npm install -g localtunnel
+```
 Then install ARM-compatible binaries for ngrok and cloudflared:
 # ngrok
---> curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
---> unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
-
+```sh
+curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
+unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
+```
 # cloudflared
---> curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
---> mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
-
+```sh
+curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
+mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
+```
 ---
 
 ## 🚀 Usage
 Start any local server (for example):
---> python -m http.server 8000
+- python -m http.server 8000
 
 Then run the tunnel:
---> ./tunnel.sh
+- ./tunnel.sh
 
 Follow the prompts:
 1. Choose a tunneling service  
@@ -106,14 +114,14 @@ Want to add a new tunneling service?
 
 1. Open tunnel.sh  
 2. Add a function:
-
+```sh
 run_mytunnel() {
     print_header
     echo "Starting MyTunnel..."
     local port=$(detect_and_select_port)
     mytunnel --port "$port"
 }
-
+```
 3. Add "MyTunnel" to the options array in main()  
 4. Add a matching case in the menu switch
 
