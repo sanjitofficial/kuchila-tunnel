@@ -1,145 +1,130 @@
-KUCHILA TUNNEL — Simple local → public tunneling launcher
+# KUCHILA TUNNEL 🌀  
+### Expose your local server to the internet — fast and simple.
 
-A small, opinionated bash wrapper to quickly expose a local server (HTTP/SSH/etc.) to the public internet using tools like ngrok, cloudflared, localtunnel or ssh (Serveo-style).
-Minimal, clear, and focused — for demos, webhook testing, quick sharing, or development collaboration.
+KUCHILA TUNNEL is a lightweight bash utility that helps you instantly share your local web app, API, or file server with a public URL using tunneling tools like ngrok, Cloudflare Tunnel, localtunnel, or SSH (Serveo).
 
-What this does (short)
+---
 
-Detects running local servers (common ports) or accepts a manual port.
+## 🧩 Features
+- Auto-detect running local servers or enter ports manually  
+- One-command setup for Linux, Termux, or WSL  
+- Supports multiple tunnel providers (ngrok, Cloudflare, localtunnel, SSH)  
+- Minimal interface, fast setup, beginner-friendly  
 
-Lets you pick a tunneling backend (ngrok / Cloudflare Tunnel / localtunnel / SSH).
+---
 
-Starts the chosen tunnel and shows the public forwarding URL.
+## ⚙️ Installation
 
-Small helper for dev workflows — not a full orchestration tool.
+### 1️⃣ Clone the repository
+git clone https://github.com/sanjitofficial/kuchila-tunnel.git
+cd kuchila-tunnel
 
-Features
+### 2️⃣ Make scripts executable
+chmod +x tunnel.sh install_tools.sh
 
-Auto-detect local servers (common ports) or manual port input.
+### 3️⃣ Install dependencies
 
-Installer helper (Linux) to fetch required CLI tools.
+#### 🐧 Linux or WSL (Windows Subsystem for Linux)
+Just run the installer:
+./install_tools.sh
 
-Support for ngrok, cloudflared, localtunnel (lt), and SSH-based tunnels.
+This script automatically installs curl, unzip, ngrok, cloudflared, nodejs, npm, ssh, etc.
 
-Simple prompts — designed for quick one-off sharing.
+Note: WSL users follow the same steps — you’re inside Linux already.
 
-Requirements
-
-bash (POSIX shell compatible)
-
-One of the tunneling tools (installer script can set up on Linux)
-
-curl, unzip, node / npm (for localtunnel) depending on chosen backend
-
-Termux users: Termux provides a Linux-like environment but package names & installer steps differ. See Termux notes below.
-
-Installation (quick)
-1) Grab the repo
-   
-$git clone https://github.com/sanjitofficial/kuchila-tunnel.git
-$cd kuchila-tunnel
-
-3) Make scripts executable (one-time)
-$chmod +x tunnel.sh install_tools.sh
-
-4) Install dependencies
-
-Linux (Debian/Ubuntu / Fedora / Arch-like)
-Run the installer (it will try to detect distro and install common tools).
-
-$./install_tools.sh
-
-Or install manually: `curl`, `unzip`, `nodejs`/`npm`, `openssh-client`, etc.
-
-- **WSL (Windows Subsystem for Linux)**  
-Use WSL's package manager exactly like Linux. Install WSL first (`wsl --install`) and run the same installer inside the WSL distro.
-
-- **Termux (Android)** — *special notes*
-Termux uses `pkg` and often ARM binaries. Installer script is **not** guaranteed to work. Recommended manual steps:
-```sh
+#### 📱 Termux (Android)
+The installer may not work on Termux. Use manual installation instead:
 pkg update && pkg upgrade
 pkg install nodejs openssh curl unzip
 npm install -g localtunnel
-# install ngrok/cloudflared for ARM if available — download ARM builds and move to $PREFIX/bin
 
+Then install ARM-compatible binaries for ngrok and cloudflared:
+# ngrok
+curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
+unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
 
-If binaries are not ARM-compatible, download appropriate releases from upstream and place them into $PREFIX/bin with chmod +x.
+# cloudflared
+curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
+mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
 
-Quick start (use)
+---
 
-Start your local server (e.g., python -m http.server 8000).
+## 🚀 Usage
+Start any local server (for example):
+python -m http.server 8000
 
-Run:
-
+Then run the tunnel:
 ./tunnel.sh
 
+Follow the prompts:
+1. Choose a tunneling service  
+2. Select a detected port or enter manually  
+3. Copy the generated public URL and share it!  
 
-Follow the menu:
+Stop the tunnel anytime with Ctrl + C.
 
-Pick a tunneling service.
+---
 
-Select a detected running port or enter one manually.
+## 🌐 Available Tunneling Services
 
-The script will launch the tunnel and print the public URL (e.g., https://abc.ngrok.io -> http://localhost:8000).
+| Service | Highlights | Best For |
+|----------|-------------|----------|
+| ngrok | Reliable, rich features, needs authtoken for long sessions | General purpose |
+| Cloudflare Tunnel | Secure and stable, Cloudflare account needed | Persistent or secure setups |
+| localtunnel | Easiest setup, no account required | Quick demos |
+| SSH (Serveo) | Uses SSH only, no installs | Limited systems / remote-only access |
 
-Stop the tunnel with Ctrl+C.
+---
 
-Services (short comparison)
-Service	When to use
-ngrok	Best all-rounder. Feature-rich; use an authtoken for stable sessions.
-Cloudflare Tunnel	Enterprise-grade, secure, good for persistent/named tunnels (requires Cloudflare account).
-localtunnel (lt)	Fast & zero-account setup. Good for quick demos.
-SSH/Serveo-style	No client install (if allowed); uses ssh tunnel — handy on locked-down systems.
-Advanced notes
-ngrok authtoken
+## 🔑 Optional Configuration
 
-To avoid short anonymous sessions or to use subdomains:
+### ngrok Authtoken
+ngrok config add-authtoken <your_token_here>
+Get your free token from https://dashboard.ngrok.com/get-started/your-authtoken
 
-Create a free account at ngrok.
+### Cloudflare Named Tunnels
+For permanent tunnels, create a named tunnel via your Cloudflare dashboard.  
+Docs: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/
 
-Copy the authtoken from the dashboard.
+---
 
-When prompted by the script, paste the token — it will run ngrok config add-authtoken <token>.
+## 🧠 Troubleshooting
 
-Cloudflare persistent tunnels
+| Problem | Cause | Fix |
+|----------|--------|-----|
+| command not found | Missing dependency | Run ./install_tools.sh again |
+| port already in use | Another process using same port | Stop that process or change port |
+| connection refused | Wrong port or local server stopped | Check running server |
+| permission denied | Missing executable flag | Run chmod +x tunnel.sh |
 
-Cloudflare quick tunnels are ephemeral. For a permanent named tunnel, follow Cloudflare docs to create a named tunnel and configure DNS. The script supports the quick tunnel flow; named tunnels require manual Cloudflare setup.
+---
 
-Troubleshooting (common)
+## 🧰 Developer Notes
 
-Command not found — installer failed or binary not in PATH. Re-run installer or place binary in /usr/local/bin (or $PREFIX/bin on Termux).
+Want to add a new tunneling service?
 
-Port already in use — choose another port or stop the conflicting service.
+1. Open tunnel.sh  
+2. Add a function:
 
-Public URL opens but shows Connection Refused — local server not running on the selected port or a firewall blocks access.
+run_mytunnel() {
+    print_header
+    echo "Starting MyTunnel..."
+    local port=$(detect_and_select_port)
+    mytunnel --port "$port"
+}
 
-Termux: binary fails — check CPU arch (arm/arm64/x86) and download correct binary release.
+3. Add "MyTunnel" to the options array in main()  
+4. Add a matching case in the menu switch
 
-Minimal developer guide (how to add a backend)
+The script will automatically detect and check for dependencies if you list them in REQUIRED_TOOLS.
 
-Add a function to tunnel.sh that:
+---
 
-Prompts/selects a port,
+## 🪪 License
+MIT — Free to modify, use, and share.  
+⚠️ You are exposing your local machine. Run only trusted servers and close tunnels when not in use.
 
-Builds the command to start the tunnel,
+---
 
-Starts it (foreground) so Ctrl+C stops it cleanly.
-
-Add the tool name in the options array in main() and handle it in case statements.
-(Keep it small — follow existing ngrok/cloudflared patterns.)
-
-Contributing
-
-Keep changes small and focused.
-
-Use bash -n and shellcheck while developing.
-
-Submit PRs that update REQUIRED_TOOLS and add clear usage examples.
-
-License
-
-MIT — copy, modify, share. Use responsibly (you're exposing local services to the internet).
-
-Last words (hacker-sane)
-
-This repo is a lightweight helper — not a long-running production gateway. Use it for demos and dev workflows. Know what you expose, secure what matters, and keep your authtokens private.
+Written by N4Notes  
+Minimal, clean, and hacker-friendly.
