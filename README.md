@@ -79,7 +79,7 @@ chmod +x tunnel.sh install_tools.sh
 ```sh
 - ./tunnel.sh
 ```
-This will install whole tool.
+This will install entire tool.
 ---
 
 ## 🚀 Usage
