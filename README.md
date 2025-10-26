@@ -27,7 +27,15 @@ cd kuchila-tunnel
 chmod +x tunnel.sh install_tools.sh
 ```
 
-### 3️⃣ Install dependencies
+### 3️⃣ Run Tool
+```sh
+./tunnel.sh
+```
+This command will run the tool. It also checks required tools if they are installed or not, if not then asks you for installation.
+
+---
+
+### Manually Install dependencies
 
 #### 🐧 Linux or WSL (Windows Subsystem for Linux)
 Just run the installer:
