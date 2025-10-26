@@ -35,18 +35,19 @@ Termux users: Termux provides a Linux-like environment but package names & insta
 
 Installation (quick)
 1) Grab the repo
-git clone https://github.com/sanjitofficial/kuchila-tunnel.git
-cd kuchila-tunnel
+   
+$git clone https://github.com/sanjitofficial/kuchila-tunnel.git
+$cd kuchila-tunnel
 
-2) Make scripts executable (one-time)
-chmod +x tunnel.sh install_tools.sh
+3) Make scripts executable (one-time)
+$chmod +x tunnel.sh install_tools.sh
 
-3) Install dependencies
+4) Install dependencies
 
 Linux (Debian/Ubuntu / Fedora / Arch-like)
 Run the installer (it will try to detect distro and install common tools).
 
-./install_tools.sh
+$./install_tools.sh
 
 Or install manually: `curl`, `unzip`, `nodejs`/`npm`, `openssh-client`, etc.
 
