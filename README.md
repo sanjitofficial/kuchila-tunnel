@@ -16,17 +16,18 @@ KUCHILA TUNNEL is a lightweight bash utility that helps you instantly share your
 ## ⚙️ Installation
 
 ### 1️⃣ Clone the repository
-git clone https://github.com/sanjitofficial/kuchila-tunnel.git
-cd kuchila-tunnel
+--> git clone https://github.com/sanjitofficial/kuchila-tunnel.git
+
+--> cd kuchila-tunnel
 
 ### 2️⃣ Make scripts executable
-chmod +x tunnel.sh install_tools.sh
+--> chmod +x tunnel.sh install_tools.sh
 
 ### 3️⃣ Install dependencies
 
 #### 🐧 Linux or WSL (Windows Subsystem for Linux)
 Just run the installer:
-./install_tools.sh
+--> ./install_tools.sh
 
 This script automatically installs curl, unzip, ngrok, cloudflared, nodejs, npm, ssh, etc.
 
@@ -34,27 +35,27 @@ Note: WSL users follow the same steps — you’re inside Linux already.
 
 #### 📱 Termux (Android)
 The installer may not work on Termux. Use manual installation instead:
-pkg update && pkg upgrade
-pkg install nodejs openssh curl unzip
-npm install -g localtunnel
+--> pkg update && pkg upgrade
+--> pkg install nodejs openssh curl unzip
+--> npm install -g localtunnel
 
 Then install ARM-compatible binaries for ngrok and cloudflared:
 # ngrok
-curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
-unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
+--> curl -L https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.zip -o ngrok.zip
+--> unzip ngrok.zip && mv ngrok $PREFIX/bin && rm ngrok.zip
 
 # cloudflared
-curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
-mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
+--> curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o cloudflared
+--> mv cloudflared $PREFIX/bin && chmod +x $PREFIX/bin/cloudflared
 
 ---
 
 ## 🚀 Usage
 Start any local server (for example):
-python -m http.server 8000
+--> python -m http.server 8000
 
 Then run the tunnel:
-./tunnel.sh
+--> ./tunnel.sh
 
 Follow the prompts:
 1. Choose a tunneling service  
@@ -123,8 +124,3 @@ The script will automatically detect and check for dependencies if you list them
 ## 🪪 License
 MIT — Free to modify, use, and share.  
 ⚠️ You are exposing your local machine. Run only trusted servers and close tunnels when not in use.
-
----
-
-Written by N4Notes  
-Minimal, clean, and hacker-friendly.
